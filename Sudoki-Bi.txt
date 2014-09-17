@@ -1,0 +1,212 @@
+####################################################
+Nom: Sudoki-Bi
+Responsable du rush: bocal <rush@epitech.eu>
+Forum Thread: du projet
+Date: 28 Fevrier --> 2 Mars 2014
+Groupe: 2 personnes
+Les instructions sont suceptible d'evoluees au cours du RUSH, rester en alerte ...
+####################################################
+ Consignes a respecter obligatoirement:
+
+- Le projet est a realiser par groupe de 2 personnes. Les 2 personnes
+  doivent etre la tout le week-end et doivent TOUTES travailler.
+  Vous serez TOUS interroge a la soutenance. Des points seront
+  enleves si un/des membres n'ont pas travaille.
+- Vous devez TOUS vous presenter a la soutenance.
+- Vous devez ecrire votre programme en C a la norme.
+- Vous avez le droit a la librairie C. (et a d'autres libs si
+  vous voulez faire des bonus du type interface graphique)
+- Vous devez avoir un fichier auteur ex :
+  (mn@blaque)cat -e auteur
+  larrie_k$
+  mn$
+- Vous devez avoir un Makefile avec les regles : all, clean, fclean ET re (make fclean all).
+- Vous devez mettre les droits sur votre projet pour que l'on compte rush puisse effectue un rammasse.
+- Vous devez respecter le repertoire de rendu ==> repo git nom projet: sudoki-bi
+	==> Doc sur intra bocal : BLIH - Bocal Lightweight Interface for Humans 
+- Vous devez respecter une l'arborescence indique aux exemple plus bas.
+- Vous devez respecter le nom du binaire indique plus bas.
+- Votre projet doit etre ramassable a 23h42 le Dimanche.
+- Vous devez rendre le projet uniquement sur le compte du chef de groupe.
+
+####################################################
+
+Le but de ce rush est de creer un binaire qui joue au sudoku par lui-meme.
+
+Les regles du sudoku sont simples :
+
+Vous avez un carre de 9 sur 9 (81 cases), delimite par 9 carres de 3 sur 3.
+Dans chaque carre, il faut placer les chiffres de 1 a 9, mais on ne doit jamais retrouver le meme chiffre sur une meme ligne ou une meme colonne.
+Tous les chiffres de 1 a 9 sont utilises une et une seule fois dans chaque carre de 3 sur 3.
+De meme tous les chiffres de 1 a 9 sont utilises une et une seule fois sur chaque ligne et chaque colonne. Sans trouver de doublon.
+
+Les grilles fournies sont deja pre-remplies.
+
+Il y a une et une seule solution.
+
+Exemple de Sudoku termine :
+
+|------------------|
+| 2 5 8 3 7 4 1 6 9|
+| 1 7 9 5 8 6 2 4 3|
+| 3 4 6 2 9 1 7 8 5|
+| 7 2 4 6 3 9 8 5 1|
+| 8 1 5 4 2 7 9 3 6|
+| 9 6 3 8 1 5 4 2 7|
+| 4 3 7 1 6 8 5 9 2|
+| 6 8 1 9 5 2 3 7 4|
+| 5 9 2 7 4 3 6 1 8|
+|------------------|
+
+PREMIERE PARTIE
+---------------
+
+La premiere partie de ce rush consiste a faire fonctionner le binaire sur une seule map.
+
+Votre programme lit sur l'entree standard la grille donnee et affiche la grille remplie apres traitement de cette derniere sur la sortie standard.
+
+Le resultat sur la sortie standard devra etre comme dans l'exemple.
+
+Exemple :
+
+(keybee@marina)cat ~proj-bocal/sudoki-bi/samples/test.txt
+|------------------|
+| 2         4   6 9|
+| 1         6   4  |
+|   4         7    |
+|         3   8 5  |
+| 8 1     2        |
+| 9                |
+|     7 1         2|
+|           2 3   4|
+| 5   2            |
+|------------------|
+(keybee@marina)
+
+(keybee@marina)~proj-bocal/sudoki-bi/bin/sudoki-bi < ~/proj-bocal/sudoki-bi/samples/test.txt
+|------------------|
+| 2 5 8 3 7 4 1 6 9|
+| 1 7 9 5 8 6 2 4 3|
+| 3 4 6 2 9 1 7 8 5|
+| 7 2 4 6 3 9 8 5 1|
+| 8 1 5 4 2 7 9 3 6|
+| 9 6 3 8 1 5 4 2 7|
+| 4 3 7 1 6 8 5 9 2|
+| 6 8 1 9 5 2 3 7 4|
+| 5 9 2 7 4 3 6 1 8|
+|------------------|
+(keybee@marina)
+
+
+DEUXIEME PARTIE
+
+---------------
+
+Le but du programme est de remplir les grilles lues sur l'entree standard le plus rapidement possible.
+
+Le programme doit renvoye sur la sortie standard toutes les grilles terminees les unes apres les autres.
+
+L'affichage entre chaque map devra contenir un delimiteur : "####################"
+
+Le resultat doit s'afficher sur la sortie standard comme precise dans l'exemple ci-dessus.
+
+Exemple :
+
+(keybee@marina)cat ~proj-bocal/sudoki-bi/samples/toto.txt
+|------------------|
+| 7   8       3    |
+|       2   1      |
+| 5                |
+|   4           2 6|
+| 3       8        |
+|       1       9  |
+|   9   6         4|
+|         7   5    |
+|                  |
+|------------------|
+|------------------|
+|       3   4   8  |
+| 3     8 2     1 4|
+| 1 8     5   6 3  |
+|   5   6       9  |
+|   9     8     6  |
+|   4       9   2  |
+|   6 7   3     5 9|
+| 9 1     6 2     3|
+|   3   5   8      |
+|------------------|
+(keybee@marina)
+
+(keybee@marina)~proj-bocal/sudoki-bi/bin/sudoki-bi < ~proj-bocal/sudoki-bi/samples/toto.txt
+|------------------|
+| 7 2 8 9 4 6 3 1 5|
+| 9 3 4 2 5 1 6 7 8|
+| 5 1 6 7 3 8 2 4 9|
+| 1 4 7 5 9 3 8 2 6|
+| 3 6 9 4 8 2 1 5 7|
+| 8 5 2 1 6 7 4 9 3|
+| 2 9 3 6 1 5 7 8 4|
+| 4 8 1 3 7 9 5 6 2|
+| 6 7 5 8 2 4 9 3 1|
+|------------------|
+####################
+|------------------|
+| 5 2 6 3 1 4 9 8 7|
+| 3 7 9 8 2 6 5 1 4|
+| 1 8 4 9 5 7 6 3 2|
+| 2 5 1 6 4 3 7 9 8|
+| 7 9 3 2 8 5 4 6 1|
+Exemple :
+
+(keybee@marina)cat ~proj-bocal/sudoki-bi/samples/toto.txt
+|------------------|
+| 7   8       3    |
+|       2   1      |
+| 5                |
+|   4           2 6|
+| 3       8        |
+|       1       9  |
+|   9   6         4|
+|         7   5    |
+|                  |
+|------------------|
+|------------------|
+|       3   4   8  |
+| 3     8 2     1 4|
+| 1 8     5   6 3  |
+|   5   6       9  |
+|   9     8     6  |
+|   4       9   2  |
+|   6 7   3     5 9|
+| 9 1     6 2     3|
+|   3   5   8      |
+|------------------|
+(keybee@marina)
+
+(keybee@marina)~proj-bocal/sudoki-bi/bin/sudoki-bi < ~proj-bocal/sudoki-bi/samples/toto.txt
+|------------------|
+| 7 2 8 9 4 6 3 1 5|
+| 9 3 4 2 5 1 6 7 8|
+| 5 1 6 7 3 8 2 4 9|
+| 1 4 7 5 9 3 8 2 6|
+| 3 6 9 4 8 2 1 5 7|
+| 8 5 2 1 6 7 4 9 3|
+| 2 9 3 6 1 5 7 8 4|
+| 4 8 1 3 7 9 5 6 2|
+| 6 7 5 8 2 4 9 3 1|
+|------------------|
+####################
+|------------------|
+| 5 2 6 3 1 4 9 8 7|
+| 3 7 9 8 2 6 5 1 4|
+| 1 8 4 9 5 7 6 3 2|
+| 2 5 1 6 4 3 7 9 8|
+| 7 9 3 2 8 5 4 6 1|
+| 6 4 8 1 7 9 3 2 5|
+| 8 6 7 4 3 1 2 5 9|
+| 9 1 5 7 6 2 8 4 3|
+| 4 3 2 5 9 8 1 7 6|
+|------------------|
+(keybee@marina)
+
+Aucune map non resolvable ou fausse ne vous sera donne pour le moment
